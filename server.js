@@ -11,7 +11,7 @@ var Cookies = require('js-cookie');
 var csrfProtection = csrf({ cookie: true })
 // var parseForm = bodyParser.urlencoded({ extended: false })
 
-const port = parseInt(process.env.PORT, 10) || 3000
+const port = parseInt(process.env.PORT, 10) || 3001
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
@@ -53,7 +53,7 @@ app.prepare()
       }
 
       // Query API for token
-      fetch('http://localhost/oauth/token', {
+      fetch('http://127.0.0.1:3000/oauth/token', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
@@ -62,7 +62,6 @@ app.prepare()
       })
         .then(r => r.json())
         .then(data => {
-          // Store JWT from response in cookies
           if (req.cookies['seshToken'])
           {
             res.clearCookie('seshToken')
@@ -73,9 +72,6 @@ app.prepare()
           });
           return res.redirect('/dashboard')
         });
-        
-      //Redirect to dashboard after login
-      // return app.render(req, res, '/dashboard')
     })
 
     server.get('*', (req, res) => {

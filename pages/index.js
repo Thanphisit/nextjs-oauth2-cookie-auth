@@ -16,7 +16,7 @@ class Index extends React.Component {
   render () {
     return (
       <div>
-        <a href="http://127.0.0.1/oauth/authorize/?client_id=5&redirect_uri=http://127.0.0.1:3000/token&response_type=code">Login</a>
+        <a href="http://127.0.0.1:3000/oauth/authorize?client_id=5&redirect_uri=http://127.0.0.1:3001/token&response_type=code">Login</a>
         <Link href="/dashboard">
           <a>Private Dashboard</a>
         </Link>
